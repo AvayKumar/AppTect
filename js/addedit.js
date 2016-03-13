@@ -11,6 +11,7 @@ $(function(){
 			console.log(response);
 
 			if( response.success ){
+				console.log(data[1].value);
 				
 			}
 
@@ -18,6 +19,13 @@ $(function(){
 
     	
 
-	})
+	});
+
+  //SLIMSCROLL FOR CHAT WIDGET
+  $('#chat-box').slimScroll({
+    height: '250px'
+  });
+
+
 
 });

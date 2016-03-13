@@ -7,8 +7,7 @@ case 'save_reg':
 try {
 $connection = new MongoClient();
 $database = $connection->selectDB('apptect');
-$collection = $database->
-selectCollection('registrations');
+$collection = $database->selectCollection('registrations');
 $registration = array(
 'dregnum' => $_POST['regnum'],
 'ddname' => $_POST['dname'],
