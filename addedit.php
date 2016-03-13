@@ -91,38 +91,21 @@
                 <div class="box-body" id="chat-box">
                   <div class="box-body no-padding">
                   <table class="table table-striped table-hover">
-                  <thead><tr>
-                      <th style="width: 10px">#</th>
-                      <th>Task</th>
-                    </tr>
+                    <thead>
+                      <tr>
+                        <th>Driver Name</th>
+                      </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="reguser">
                     <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
                       <td>Clean database</td>
                     </tr>
                     <tr>
-                      <td>1.</td>
                       <td>Update software</td>
                     </tr>
                     <tr>
-                      <td>2.</td>
                       <td>Clean database</td>
                     </tr>
-                    <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
-                    </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                    </tr>
-               
-                
                    
                   
                       
@@ -130,15 +113,7 @@
                 </div>
 
                 </div><!-- /.chat -->
-                <div class="box-footer">
-                  <div class="input-group">
-                    <input class="form-control" placeholder="Type message...">
-                    <div class="input-group-btn">
-                      <button class="btn btn-success"><i class="fa fa-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- /.box (chat box) -->
+                
 
  
 

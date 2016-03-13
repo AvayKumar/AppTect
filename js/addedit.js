@@ -7,12 +7,20 @@ $(function(){
 
     	console.log(data);
 
-    	$.post('addEditController.php',data,function(response){
-			console.log(response);
+    	$.post('addEditController.php', data ,function(response){
 
 			if( response.success ){
-				console.log(data[1].value);
+				console.log(response);
 				
+				$('#reguser').prepend(
+						$('<tr/>',{'data-id': response.id['$id']})
+						.append('<td>' + response.name + '</td>')
+						.click(function(){
+							$()
+
+						})
+					);
+
 			}
 
     	},'JSON');
@@ -23,7 +31,7 @@ $(function(){
 
   //SLIMSCROLL FOR CHAT WIDGET
   $('#chat-box').slimScroll({
-    height: '250px'
+    height: '520px'
   });
 
 

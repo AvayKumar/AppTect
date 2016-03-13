@@ -1,6 +1,7 @@
 <?php
 
 	if( isset($_POST['regnum'], $_POST['dname'], $_POST['tname'], $_POST['ptype'])  ){
+	
 		$response = array();
 
 		try {
@@ -15,8 +16,21 @@
 				'dptype' => $_POST['ptype'],
 				'saved_at' => new MongoDate()
 			);
+
+
+
             if ( $collection->insert($registration) ) {
-            	$response['success'] = true;
+            	
+            	$cursor = $collection->find(array('dregnum' => $_POST['regnum']), array('_id', 'ddname'));
+    		
+    		 	if( $cursor->hasNext()){
+    		 		$data = $cursor->getNext();
+    		 		$response['success'] = true;
+    		 		$response['id'] = $data['_id'];
+    		 		$response['name'] = $data['ddname'];
+    		 	} else {
+    		 		$response['success'] = false;
+    		 	}
             } else {
             	$response['success'] = false;
             }
