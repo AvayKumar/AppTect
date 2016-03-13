@@ -6,6 +6,7 @@
     <title>AdminLTE 2 | Dashboard</title>
 
     <?php require 'components/styles.php' ?>
+    <link rel="stylesheet" href="css/addeditstyle.css" >
 
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -28,10 +29,13 @@
             <li class="active">Dashboard</li>
           </ol>
         </section>
-
+        
         <!-- Main content -->
         <section class="content">
-          <!-- Small boxes (Stat box) -->
+          <div id="message" class="alert" style="display:none">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <p></p>
+          </div>
 
           <!-- Main row -->
           <div class="row">
@@ -46,9 +50,9 @@
                   </div><!-- /. tools -->
                 </div>
                 <div class="box-body">
-                  <form id="regform" action="#" method="post">
+                  <form id="regform" name="subform"  action="#" method="post" >
                     <div class="form-group">
-                      <input type="text" class="form-control" name="regnum" placeholder="Vehicle Registraion No" required>
+                      <input type="text" class="form-control" name="regnum" placeholder="Vehicle Registraion No" id="vname" required>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" name="dname" placeholder="Driver Name" required>
@@ -70,11 +74,11 @@
                         </label>
                       </div>
                     </div>
-                   <input type="submit" id="submit" style="display:none">
+                   <input type="submit" id="submit" style="display:none" >
                   </form>
                 </div>
                 <div class="box-footer clearfix">
-                  <button type="button" class="pull-right btn btn-primary" onclick="document.getElementById('submit').click()">Submit <i class="fa fa-arrow-circle-right"></i></button>
+                  <button id="subbutt" type="button" class="pull-right btn btn-primary" onclick="document.getElementById('submit').click();  ">Submit <i class="fa fa-arrow-circle-right"></i></button>
                 </div>
               </div>
           </div> 
