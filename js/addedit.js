@@ -26,8 +26,17 @@ $(function(){
 				$('#regform input[name="dname"]').val(response.dname);
 				$('#regform input[name="tname"]').val(response.tname);
 				$('#regform input[name="ptype"]').val(response.ptype);
-				$('#subbutt').empty().append('Update <i class="fa fa-arrow-circle-right"></i>');			
+				$('#subbutt').empty().append('Update <i class="fa fa-arrow-circle-right"></i>');
+
+				if( $('#regform input[name="ptype"]').attr('value') === 'hr' ){
+				$('#optionsRadios1').prop("checked", true);
+				}else {	
+
+				$('#optionsRadios2').prop("checked", true);	
+					
+				}			
 			}
+
 		}, 'JSON');
 	}
 
@@ -64,6 +73,15 @@ $(function(){
     	
 
 	});
+
+						$('.rowclk').click(function(){
+							
+							var id = $(this).attr('data-id');
+							console.log(id);
+							fetchdata(id);	
+						})
+
+
 
   //SLIMSCROLL FOR CHAT WIDGET
   $('#chat-box').slimScroll({

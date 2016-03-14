@@ -63,13 +63,13 @@
                     <div class="form-group">
                       <div class="radio">
                         <label>
-                          <input type="radio" name="ptype" id="optionsRadios1" value="hr" checked="">
+                          <input type="radio" name="ptype" id="optionsRadios1" value="hr" checked>
                           Hour Based
                         </label>
                       </div>
                       <div class="radio">
                         <label>
-                          <input type="radio" name="ptype" id="optionsRadios2" value="km">
+                          <input type="radio" name="ptype" id="optionsRadios2" value="km" >
                           Kilometer Based
                         </label>
                       </div>
@@ -84,7 +84,22 @@
           </div> 
             <!-- Left col -->
             <section class="col-lg-4">
-  
+
+<?php
+            try {
+                  $connection = new MongoClient();
+                  $database = $connection->selectDB('apptect');
+                  $collection = $database->selectCollection('registrations');
+
+                  $cursor = $collection->find();
+
+                  } catch(MongoConnectionException $e) {
+                  die("Failed to connect to database ".$e->getMessage());
+                  } catch(MongoException $e) {
+                  die('Failed to insert data '.$e->getMessage());
+                  }                    
+?>
+ 
               <!-- Chat box -->
               <div class="box box-success">
                 <div class="box-header">
@@ -101,18 +116,17 @@
                       </tr>
                     </thead>
                     <tbody id="reguser">
-                    <tr>
-                      <td>Clean database</td>
-                    </tr>
-                    <tr>
-                      <td>Update software</td>
-                    </tr>
-                    <tr>
-                      <td>Clean database</td>
-                    </tr>
-                   
+
+<?php                   
+
+                    while ($cursor->hasNext()):
+                        $registration = $cursor->getNext(); 
+                       echo '<tr class="rowclk" data-id="'.$registration['_id'].'">';
+                       echo '<td>'.$registration['ddname'].'</td>';
+                       echo '</tr>';
+
+                    endwhile; ?>                              
                   
-                      
                   </tbody></table>
                 </div>
 
