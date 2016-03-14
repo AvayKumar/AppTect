@@ -61,20 +61,27 @@
                       <input type="text" class="form-control" name="tname" placeholder="Transport Name" required>
                     </div>
                     <div class="form-group">
+                      <input type="text" class="form-control" name="imei" placeholder="IMEI Number" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="phone" placeholder="SIM Card Number" required>
+                    </div>
+                    <div class="form-group">
                       <div class="radio">
                         <label>
-                          <input type="radio" name="ptype" id="optionsRadios1" value="hr" checked>
+                          <input type="radio" name="ptype" id="optionsRadios1" data-place="Hour Basis" value="hr" required>
                           Hour Based
                         </label>
                       </div>
                       <div class="radio">
                         <label>
-                          <input type="radio" name="ptype" id="optionsRadios2" value="km" >
+                          <input type="radio" name="ptype" id="optionsRadios2" data-place="Kilometer Basis" value="km" required>
                           Kilometer Based
                         </label>
                       </div>
+                      <input type="text" class="form-control" id="radclk" name="prate" class="form-control" style="display:none"> 
                     </div>
-                   <input type="submit" id="submit" style="display:none" >
+                   <input type="submit" name="submit" value="submit" id="submit" style="display:none" />
                   </form>
                 </div>
                 <div class="box-footer clearfix">
@@ -98,7 +105,7 @@
                   } catch(MongoException $e) {
                   die('Failed to insert data '.$e->getMessage());
                   }                    
-?>
+              ?>
  
               <!-- Chat box -->
               <div class="box box-success">
@@ -117,12 +124,12 @@
                     </thead>
                     <tbody id="reguser">
 
-<?php                   
+                <?php                   
 
                     while ($cursor->hasNext()):
                         $registration = $cursor->getNext(); 
                        echo '<tr class="rowclk" data-id="'.$registration['_id'].'">';
-                       echo '<td>'.$registration['ddname'].'</td>';
+                       echo '<td>'.$registration['dname'].'</td>';
                        echo '</tr>';
 
                     endwhile; ?>                              

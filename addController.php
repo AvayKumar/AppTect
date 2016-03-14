@@ -1,6 +1,6 @@
 <?php
-
-	if( isset($_POST['regnum'], $_POST['dname'], $_POST['tname'], $_POST['ptype'])  ){
+	
+	if( isset($_POST) ){
 	
 		$response = array();
 
@@ -10,10 +10,13 @@
 			$collection = $database->selectCollection('registrations');
 
 			$registration = array(
-				'dregnum' => $_POST['regnum'],
-				'ddname' => $_POST['dname'],
-				'dtname' => $_POST['tname'],
-				'dptype' => $_POST['ptype'],
+				'regnum' => $_POST['regnum'],
+				'dname' => $_POST['dname'],
+				'tname' => $_POST['tname'],
+				'ptype' => $_POST['ptype'],
+				'prate' => $_POST['prate'],
+				'imei' => $_POST['imei'],
+				'phone' => $_POST['phone'],
 				'saved_at' => new MongoDate()
 			);
 
@@ -21,13 +24,13 @@
 
             if ( $collection->insert($registration) ) {
             	
-            	$cursor = $collection->find(array('dregnum' => $_POST['regnum']), array('_id', 'ddname'));
+            	$cursor = $collection->find(array('regnum' => $_POST['regnum']), array('_id', 'dname'));
     		
     		 	if( $cursor->hasNext()){
     		 		$data = $cursor->getNext();
     		 		$response['success'] = true;
     		 		$response['id'] = $data['_id'];
-    		 		$response['name'] = $data['ddname'];
+    		 		$response['name'] = $data['dname'];
     		 	} else {
     		 		$response['success'] = false;
     		 	}

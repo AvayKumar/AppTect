@@ -13,10 +13,13 @@
 
 				if( $data ){	
 			 		$response['success'] = true;
-			 		$response['regnum'] = $data['dregnum'];
-			 		$response['dname'] = $data['ddname'];
-			 		$response['tname'] = $data['dtname'];
-			 		$response['ptype'] = $data['dptype'];
+			 		$response['regnum'] = $data['regnum'];
+			 		$response['dname'] = $data['dname'];
+			 		$response['tname'] = $data['tname'];
+			 		$response['ptype'] = $data['ptype'];
+			 		$response['prate'] = $data['prate'];
+			 		$response['imei'] = $data['imei'];
+			 		$response['phone'] = $data['phone'];
 
 			 	} else {
 			 		$response['success'] = false;

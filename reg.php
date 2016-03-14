@@ -42,10 +42,10 @@ $cursor = $collection->find();
      <?php while ($cursor->hasNext()):
      $registration = $cursor->getNext();
      echo '<tr>';
-     echo '<td>'.$registration['dregnum'].'</td>';
-     echo '<td>'.$registration['ddname'].'</td>';
-     echo '<td>'.$registration['dtname'].'</td>';
-     echo '<td>'.$registration['dptype'].'</td>';
+     echo '<td>'.$registration['regnum'].'</td>';
+     echo '<td>'.$registration['dname'].'</td>';
+     echo '<td>'.$registration['tname'].'</td>';
+     echo '<td>'.$registration['ptype'].'</td>';
      echo '<td><a href="http://localhost/apptect/edit.php?edit='.$registration['_id'].'" onclick="test(this)" class="btn btn-warning">Edit</button></td>';
      echo '<td><a href="?delete='.$registration['_id'].'" class="btn btn-danger">Delete</a></td>';
 	 echo '</tr>'; 

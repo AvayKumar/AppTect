@@ -1,5 +1,9 @@
 $(function(){
 
+	function cl(m){
+		console.log(m);
+	}
+
 	function showMessage(_class, message){
 		$('#message')
 		.addClass(_class)
@@ -26,15 +30,18 @@ $(function(){
 				$('#regform input[name="dname"]').val(response.dname);
 				$('#regform input[name="tname"]').val(response.tname);
 				$('#regform input[name="ptype"]').val(response.ptype);
+				$('#regform input[name="prate"]').val(response.prate);
+				$('#regform input[name="imei"]').val(response.imei);
+				$('#regform input[name="phone"]').val(response.phone);
+
 				$('#subbutt').empty().append('Update <i class="fa fa-arrow-circle-right"></i>');
 
-				if( $('#regform input[name="ptype"]').attr('value') === 'hr' ){
-				$('#optionsRadios1').prop("checked", true);
+				if( $('#regform input[name="ptype"]').attr('value') === 'hr' ) {
+					$('#optionsRadios1').prop("checked", true);
 				}else {	
-
-				$('#optionsRadios2').prop("checked", true);	
-					
-				}			
+					$('#optionsRadios2').prop("checked", true);	
+				}	
+				
 			}
 
 		}, 'JSON');
@@ -47,9 +54,9 @@ $(function(){
 
     	console.log(data);
 
-
-
     	$.post('addController.php', data ,function(response){
+
+    		cl("False");
 
 			if( response.success ){
 				console.log(response);
@@ -64,24 +71,25 @@ $(function(){
 							fetchdata(id);	
 						})
 					);
+				console.log($('#regform').serializeArray());
 				document.subform.reset();
+
 				showMessage('alert-success', 'Registration <b>Successfull</b>');
 			}
 
     	},'JSON');
 
-    	
-
 	});
 
-						$('.rowclk').click(function(){
-							
-							var id = $(this).attr('data-id');
-							console.log(id);
-							fetchdata(id);	
-						})
+	$('.rowclk').click(function(){
+		var id = $(this).attr('data-id');
+		console.log(id);
+		fetchdata(id);	
+	});
 
-
+	$('input[name="ptype"]').click(function(){
+		$( '#radclk' ).attr("placeholder", $(this).attr('data-place')).slideDown();
+	});
 
   //SLIMSCROLL FOR CHAT WIDGET
   $('#chat-box').slimScroll({
