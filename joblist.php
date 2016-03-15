@@ -2,7 +2,7 @@
                try {
                $connection = new MongoClient();
                $database = $connection->selectDB('apptect');
-               $collection = $database->selectCollection('registrations');
+               $collection = $database->selectCollection('jobs');
                } catch(MongoConnectionException $e) {
                die("Failed to connect to database ".$e->getMessage());
                }
@@ -11,7 +11,7 @@
 
 
 <?php
-	// Deleting registration from database
+	// Deleting job from database
 	if( isset( $_GET['delete'] ) ) {
 		// TODO Delete form database
 		$collection->remove(array('_id' => new MongoId($_GET['delete'])));
@@ -21,44 +21,44 @@
 
 <html>
 <head>
-   <title>Registrations</title>
+   <title>Jobs</title>
    <link href = "css/bootstrap.min.css" rel = "stylesheet">
 
    </head>
    <body>
-     <h1> Registrations </h1>
+     <h1> Jobs </h1>
      <table class="table">
      <thead>
      	<tr>
      		<th>Vehicle Name</th>
-     		<th>Driver Name</th>
-     		<th>Transporter Name</th>
+     		<th>Job Location</th>
      		<th>Payment Type</th>
+               <th>Supervisor Name</th>
      		<th>Edit</th>
      		<th>Delete</th>
      	</tr>
      </thead>
      <tbody>
      <?php while ($cursor->hasNext()):
-     $registration = $cursor->getNext();
+     $job = $cursor->getNext();
      echo '<tr>';
-     echo '<td>'.$registration['regnum'].'</td>';
-     echo '<td>'.$registration['dname'].'</td>';
-     echo '<td>'.$registration['tname'].'</td>';
-     echo '<td>'.$registration['ptype'].'</td>';
-     echo '<td><a href="http://localhost/apptect/edit.php?edit='.$registration['_id'].'" onclick="test(this)" class="btn btn-warning">Edit</button></td>';
-     echo '<td><a href="?delete='.$registration['_id'].'" class="btn btn-danger">Delete</a></td>';
+     echo '<td>'.$job['regnum'].'</td>';
+     echo '<td>'.$job['jloc'].'</td>';
+     echo '<td>'.$job['ptype'].'</td>';
+     echo '<td>'.$job['supname'].'</td>';
+     echo '<td><a href="http://localhost/apptect/edit.php?edit='.$job['_id'].'" onclick="test(this)" class="btn btn-warning">Edit</button></td>';
+     echo '<td><a href="?delete='.$job['_id'].'" class="btn btn-danger">Delete</a></td>';
 	 echo '</tr>'; 
      endwhile; ?>
      </tbody>
      <tfoot>
      	<tr>
      		<th>Vehicle Name</th>
-     		<th>Driver Name</th>
-     		<th>Transporter Name</th>
-     		<th>Payment Type</th>
-     		<th>Edit</th>
-     		<th>Delete</th>
+               <th>Job Location</th>
+               <th>Payment Type</th>
+               <th>Supervisor Name</th>
+               <th>Edit</th>
+               <th>Delete</th>
      	</tr>
      </tfoot>
      </table>
