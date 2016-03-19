@@ -8,17 +8,17 @@
 Google Maps Style
 */
 #gmaps-canvas{
-	height: 100px;
+	height: 200px;
 }
 
 @media (min-width: 768px) {
 	#gmaps-canvas{
-		height: 200px;
+		height: 280px;
 	}
 }
 
 @media (min-width: 992px ) {
 	#gmaps-canvas{
-		height: 300px;
+		height: 310px;
 	}
 }

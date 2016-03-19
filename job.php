@@ -54,15 +54,11 @@
 
           <!-- Main Page Content -->
                     <div class="row">
-             <div class="col-md-8">
+             <div class="col-md-5">
                 <div class="box box-primary">
                 <div class="box-header">
                   <i class="fa fa-registered"></i>
                   <h3 class="box-title">Create New Job</h3>
-                  <!-- tools box -->
-                  <div class="pull-right box-tools">
-                    <button class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-                  </div><!-- /. tools -->
                 </div>
                 <div class="box-body">
 
@@ -121,19 +117,22 @@
                   <button id="subbutt" type="button" class="pull-right btn btn-primary" onclick="document.getElementById('submit').click();  ">Submit <i class="fa fa-arrow-circle-right"></i></button>
                 </div>
               </div>
-
-              <div class='gmaps'>
-                <div class='input-gmaps-autocomplete'>
-                  <div id='gmaps-error'></div>
-                <div id='gmaps-canvas' class="col-xs-12"></div>
-            </div>
-          
-                
-
- 
-
-            </section><!-- /.Left col -->
-
+              </div>
+              <div class="col-md-7">
+                <div class="box box-primary">
+                  <div class="box-header">
+                    <i class="fa fa-map-marker"></i>
+                    <h3 class="box-title">Map For JOB</h3>
+                  </div>
+                  <div class="box-body">
+                    <div class='gmaps'>
+                        <div id='gmaps-error'></div>
+                        <div id='gmaps-canvas' class="col-xs-12"></div>
+                    </div>
+                  </div>
+                 </div> 
+              </div>
+        
           </div><!-- /.row (main row) -->
 
         </section><!-- /.content -->

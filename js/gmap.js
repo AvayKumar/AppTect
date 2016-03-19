@@ -17,8 +17,6 @@ function initialize() {
 }
 
 function calcRoute(start , end) {
-  //var start = document.getElementById("start").value;
-  //var end = document.getElementById("end").value;
   if( isSourceSet && isDestSet ) {
     var request = {
       origin:start,
@@ -28,11 +26,13 @@ function calcRoute(start , end) {
     directionsService.route(request, function(result, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(result);
+        sourceMarker.setMap(null);
+        destMarker.setMap(null);
+      } else {
+        sourceMarker.setMap(map);
+        destMarker.setMap(map);
       }
     });
-
-    sourceMarker.setMap(null);
-    destMarker.setMap(null);
 
   }
 }  
@@ -235,5 +235,7 @@ $(document).ready(function() {
     isSource = false;
     console.log('In !!!');
   });
+
+  
 
 });
