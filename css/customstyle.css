@@ -1,0 +1,24 @@
+
+#reguser tr:hover{
+	cursor: pointer;
+}
+
+
+/*
+Google Maps Style
+*/
+#gmaps-canvas{
+	height: 100px;
+}
+
+@media (min-width: 768px) {
+	#gmaps-canvas{
+		height: 200px;
+	}
+}
+
+@media (min-width: 992px ) {
+	#gmaps-canvas{
+		height: 300px;
+	}
+}

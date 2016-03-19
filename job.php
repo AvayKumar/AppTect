@@ -6,7 +6,8 @@
     <title>AdminLTE 2 | Dashboard</title>
 
     <?php require 'components/styles.php' ?>
-    <link rel="stylesheet" href="css/addeditstyle.css" >
+        <link rel="stylesheet" href="css/customstyle.css" >
+        <link rel="stylesheet" type="text/css" media="screen" title="User Defined Style" href="css/jquery-ui-1.8.16.custom.css" >
 
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -82,8 +83,13 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text" class="form-control" name="jloc" placeholder="Job Location" required>
+                      <input type="text" id="sourceLoc" class="form-control" name="jloc" placeholder="Source Location" required>
                     </div>
+
+                    <div class="form-group">
+                      <input type="text" id="destLoc" class="form-control" name="jloc" placeholder="Destination Location" required>
+                    </div>
+
 
                     <div class="form-group">
                       <div class="radio">
@@ -115,6 +121,12 @@
                   <button id="subbutt" type="button" class="pull-right btn btn-primary" onclick="document.getElementById('submit').click();  ">Submit <i class="fa fa-arrow-circle-right"></i></button>
                 </div>
               </div>
+
+              <div class='gmaps'>
+                <div class='input-gmaps-autocomplete'>
+                  <div id='gmaps-error'></div>
+                <div id='gmaps-canvas' class="col-xs-12"></div>
+            </div>
           
                 
 
@@ -132,7 +144,10 @@
     </div><!-- ./wrapper -->
 
    <?php require 'components/scripts.php' ?>
+   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
    <script type="text/javascript" src="js/job.js"></script>
    <script type="text/javascript" src="js/addedit.js"></script>
+   <script type="text/javascript" src="js/gmap.js"></script>
+
   </body>
 </html>
