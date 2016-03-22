@@ -1,3 +1,4 @@
+var API_KEY = 'AIzaSyAkcIJSLJXcO0VwoNDjp6Zhavg7m1svaSk';
 var geocoder;
 var map;
 var marker;
@@ -34,8 +35,70 @@ function calcRoute(start , end) {
       }
     });
 
+    distance();
+    latlang();
+
   }
-}  
+} 
+
+/*
+  For latitude Longitude Filling
+*/
+
+function latlang(){
+
+    $('#sourcelat').val(source.lat());
+    $('#sourcelng').val(source.lng());
+
+    $('#destlat').val(dest.lat());
+    $('#destlng').val(dest.lng());
+
+}
+
+/*
+  For Distance Calculation
+*/
+function distance(){
+
+    var sLatLan = source.lat() + ',' + source.lng();
+    var dLatLan = dest.lat() + ',' + dest.lng();
+    var ptype   = $('#dropdown :selected').attr('data-ptype');
+    var prate   = $('#dropdown :selected').attr('data-prate');
+    var mult;
+    var amount;
+    
+
+
+    var requestUrl = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=' + sLatLan + '&destinations=' + dLatLan + '&key=' + API_KEY ;
+    console.log( requestUrl );
+
+    $.get(requestUrl, function(response) {
+
+        console.log(response);  
+
+        if( response.status == 'OK' ) {
+
+          $('#estdistance').val( response.rows[0].elements[0].distance.text );
+          $('#esttime').val( response.rows[0].elements[0].duration.text );
+
+                if (ptype== 'km'){
+
+                mult = (response.rows[0].elements[0].distance.value)/1000;
+
+                }else {
+
+                mult =  (response.rows[0].elements[0].duration.value)/3600; 
+                }
+                amount = prate*mult;
+                amount = amount.toFixed(2);
+                $('#amount').val( amount );
+
+
+        }
+
+    }, 'JSON');
+ }
+
 
 /*
   END : direction functions
@@ -45,12 +108,12 @@ function calcRoute(start , end) {
 function gmaps_init(){
 
   // center of the universe
-  var sourceLatLang = new google.maps.LatLng(51.751724,-1.255284);
-  var destLatLang = new google.maps.LatLng(51.751724,-1.255284);
+  var sourceLatLang = new google.maps.LatLng(21.0000,78.0000);
+  var destLatLang = new google.maps.LatLng(21.0000,78.0000);
 
 
     var options = {
-    zoom: 2,
+    zoom: 4,
     center: sourceLatLang,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
@@ -112,12 +175,15 @@ function update_map( geometry ) {
     destMarker.setPosition( geometry.location );
   }
   calcRoute(source, dest);
+
+
 }
 
 // fill in the UI elements with new position data
 function update_ui( id, address, sourceLatLang ) {
   $( id ).autocomplete("close");
   $( id ).val(address);
+
   //$('#gmaps-output-latitude').html(sourceLatLang.lat());
   //$('#gmaps-output-longitude').html(sourceLatLang.lng());
 
@@ -181,6 +247,7 @@ function geocode_lookup( type, value, update ) {
           update_ui('#destLoc' ,'', value);
         }
 
+
       }
     };
   });
@@ -228,14 +295,14 @@ $(document).ready(function() {
 
   $('#sourceLoc').focusin(function(){
     isSource = true;
-    console.log('In !!!');
   });
 
   $('#destLoc').focusin(function(){
     isSource = false;
-    console.log('In !!!');
   });
 
-  
 
-});
+  });
+
+
+     

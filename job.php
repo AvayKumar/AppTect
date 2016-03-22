@@ -65,13 +65,14 @@
                   <form id="jobform" name="subform"  action="#" method="post" >
 
                     <div class="form-group">
-                      <select id="dropdown" name="regnum" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                        <option value="" disabled selected>Select A Vehicle</option>
+                      <select id="dropdown" name="regnum" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                        <option value="">Select A Vehicle</option>
 <?php                   
 
                     while ($cursor->hasNext()):
                         $registration = $cursor->getNext(); 
-                       echo '<option  value="'.$registration['regnum'].'">'.$registration['regnum'].'</option>';
+                       echo '<option  value="'.$registration['regnum'].'"data-ptype="'.$registration['ptype'].'"data-prate="'.$registration['prate'].'">'.$registration['regnum'].'</option>';
+
 
                     endwhile; ?> 
 
@@ -79,35 +80,48 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="sourceLoc" class="form-control" name="jloc" placeholder="Source Location" required>
+                      <input type="text" id="sourceLoc" class="form-control" name="source" placeholder="Source Location" required>
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="destLoc" class="form-control" name="jloc" placeholder="Destination Location" required>
+                      <input type="text" id="destLoc" class="form-control" name="dest" placeholder="Destination Location" required>
                     </div>
-
 
                     <div class="form-group">
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="ptype" id="optionsRadios1" data-place="Amount Per Hour" value="hr" required>
-                          Hour Based
-                        </label>
-                      </div>
-
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="ptype" id="optionsRadios2" data-place="Amount Per Kilometer" value="km" required>
-                          Kilometer Based
-                        </label>
-                      </div>
-
-                      <input type="text" class="form-control" id="radclk" name="prate" class="form-control" style="display:none"> 
+                      <input type="text" id="estdistance" class="form-control" name="distance" placeholder="Estimated Distance " required>
                     </div>
+
+                    <div class="form-group">
+                      <input type="text" id="esttime" class="form-control" name="time" placeholder="Estimated Time " required>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                        <input type="text" class="form-control" id="amount" name="amount" placeholder="Estimated Amount" required>
+                      </div>
+                    </div>
+
 
                     <div class="form-group">
                       <input type="text" class="form-control" name="supname" placeholder="Supervisor Name" required>
                     </div>
+
+                     <div class="form-group">
+                      <input type="hidden" class="form-control" name="sourcelat" id="sourcelat">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="hidden" class="form-control" name="sourcelng" id="sourcelng">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="hidden" class="form-control" name="destlat" id="destlat">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="hidden" class="form-control" name="destlng" id="destlng">
+                    </div>  
 
                    <input type="submit" name="submit" value="submit" id="submit" style="display:none" />
                   </form>

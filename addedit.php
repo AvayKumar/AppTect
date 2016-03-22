@@ -64,22 +64,25 @@
                       <input type="text" class="form-control" name="imei" placeholder="IMEI Number" required>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" name="phone" placeholder="SIM Card Number" required>
+                      <div class="input-group">
+                        <span class="input-group-addon">+91</i></span>
+                      <input type="text" class="form-control" name="phone" placeholder="SIM Card Number" maxlength="10" required>
+                       </div> 
                     </div>
                     <div class="form-group">
                       <div class="radio">
                         <label>
-                          <input type="radio" name="ptype" id="optionsRadios1" data-place="Hour Basis" value="hr" required>
+                          <input type="radio" name="ptype" id="optionsRadios1" data-place="Amount Per Hour" value="hr" required>
                           Hour Based
                         </label>
                       </div>
                       <div class="radio">
                         <label>
-                          <input type="radio" name="ptype" id="optionsRadios2" data-place="Kilometer Basis" value="km" required>
+                          <input type="radio" name="ptype" id="optionsRadios2" data-place="Amount Per Kilometer" value="km" required>
                           Kilometer Based
                         </label>
                       </div>
-                      <input type="text" class="form-control" id="radclk" name="prate" class="form-control" style="display:none"> 
+                      <input type="number" class="form-control" id="radclk" name="prate" class="form-control" style="display:none"> 
                     </div>
                    <input type="submit" name="submit" value="submit" id="submit" style="display:none" />
                   </form>

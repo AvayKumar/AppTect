@@ -11,9 +11,15 @@
 
 			$job = array(
 				'regnum' => $_POST['regnum'],
-				'jloc' => $_POST['jloc'],
-				'ptype' => $_POST['ptype'],
-				'prate' => $_POST['prate'],
+				'source' => $_POST['source'],
+				'sourcelat' => $_POST['sourcelat'],
+				'sourcelng' => $_POST['sourcelang'],
+				'dest' => $_POST['dest'],
+				'destlat' => $_POST['destlat'],
+				'destlng' => $_POST['destlng'],
+				'distance' => $_POST['distance'],
+				'time' => $_POST['time'],
+				'amount' => $_POST['amount'],
 				'supname' => $_POST['supname'],
 				'saved_at' => new MongoDate()
 			);
