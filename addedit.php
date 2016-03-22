@@ -6,7 +6,7 @@
     <title>AdminLTE 2 | Dashboard</title>
 
     <?php require 'components/styles.php' ?>
-    <link rel="stylesheet" href="css/addeditstyle.css" >
+    <link rel="stylesheet" href="css/customstyle.css" >
 
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -69,22 +69,41 @@
                       <input type="text" class="form-control" name="phone" placeholder="SIM Card Number" maxlength="10" required>
                        </div> 
                     </div>
+
                     <div class="form-group">
+                      <select id="pdropdown" name="ptype" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                        <option value="" >Select Payment Basis</option>
+                        <option id="option1" value="hr" data-place="Amount Per Hour"> Per Hour </option>
+                        <option id="option2" value="km" data-place="Amount Per Kilometer"> Per Kilometer </option>
+                        </select> 
+                    </div>
+
+                    <div class="input-group" id="radclk" >
+                        <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                      <input type="number" class="form-control"  name="prate" class="form-control">
+                      </div> 
+
+
+                    <!-- <div class="form-group">
                       <div class="radio">
                         <label>
                           <input type="radio" name="ptype" id="optionsRadios1" data-place="Amount Per Hour" value="hr" required>
-                          Hour Based
+                          Per Hour
                         </label>
                       </div>
                       <div class="radio">
                         <label>
                           <input type="radio" name="ptype" id="optionsRadios2" data-place="Amount Per Kilometer" value="km" required>
-                          Kilometer Based
+                          Per Kilometer
                         </label>
                       </div>
-                      <input type="number" class="form-control" id="radclk" name="prate" class="form-control" style="display:none"> 
-                    </div>
+                      <div class="input-group" id="radclk" style="display:none">
+                        <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                      <input type="number" class="form-control"  name="prate" class="form-control">
+                      </div> 
+                    </div> -->
                    <input type="submit" name="submit" value="submit" id="submit" style="display:none" />
+                   <input type="button" name="update" value="update" id="update" style="display:none" />
                   </form>
                 </div>
                 <div class="box-footer clearfix">

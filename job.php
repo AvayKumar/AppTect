@@ -80,6 +80,10 @@
                     </div>
 
                     <div class="form-group">
+                      <input type="text" id="jname" class="form-control" name="jname" placeholder="Job Name For Ex. Mumbai-Delhi etc." required>
+                    </div>
+
+                    <div class="form-group">
                       <input type="text" id="sourceLoc" class="form-control" name="source" placeholder="Source Location" required>
                     </div>
 

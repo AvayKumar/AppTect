@@ -1,5 +1,11 @@
 $(function(){
 
+	$('input[name=ptype]').change(function(){
+
+    var value = $( 'input[name=ptype]:checked' ).val();
+    alert(value);
+});
+
 	function cl(m){
 		console.log(m);
 	}
@@ -29,19 +35,20 @@ $(function(){
 				$('#regform input[name="regnum"]').val(response.regnum);
 				$('#regform input[name="dname"]').val(response.dname);
 				$('#regform input[name="tname"]').val(response.tname);
-				$('#regform input[name="ptype"]').val(response.ptype);
 				$('#regform input[name="prate"]').val(response.prate);
 				$('#regform input[name="imei"]').val(response.imei);
 				$('#regform input[name="phone"]').val(response.phone);
 
+				$('#subbutt').attr('onclick','document.getElementById("update").click();');
 				$('#subbutt').empty().append('Update <i class="fa fa-arrow-circle-right"></i>');
-
-				if( $('#regform input[name="ptype"]').attr('value') === 'hr' ) {
-					$('#optionsRadios1').prop("checked", true);
-				}else {	
-					$('#optionsRadios2').prop("checked", true);	
-				}	
+				if( response.ptype == 'hr' ) {
+					$('#option1').prop("selected", true);
+				}else if ( response.ptype == 'km'){
+					$('#option2').prop("selected", true);	
+				}
+					
 				
+
 			}
 
 		}, 'JSON');
@@ -56,7 +63,6 @@ $(function(){
 
     	$.post('addController.php', data ,function(response){
 
-    		cl("False");
 
 			if( response.success ){
 				console.log(response);
@@ -71,7 +77,6 @@ $(function(){
 							fetchdata(id);	
 						})
 					);
-				console.log($('#regform').serializeArray());
 				document.subform.reset();
 
 				showMessage('alert-success', 'Registration <b>Successfull</b>');
@@ -82,14 +87,38 @@ $(function(){
 	});
 
 	$('.rowclk').click(function(){
-		var id = $(this).attr('data-id');
+		id = $(this).attr('data-id');
 		console.log(id);
 		fetchdata(id);	
 	});
 
-	$('input[name="ptype"]').click(function(){
-		$( '#radclk' ).attr("placeholder", $(this).attr('data-place')).slideDown();
+	$( "select" ).change(function() {
+	$( "select option:selected" ).each(function() {
+  
+	$('input[name="prate"]').attr("placeholder", $(this).attr('data-place'));
 	});
+});
+	//Post For Updating Registration
+	$('#update').click(function(){
+		console.log('clicked successfully');
+		var data = $('#regform').serializeArray();
+		data.push({ 'name': 'id', 'value': id});
+
+		$.post('updatecontroller.php', data ,function(response){
+
+			console.log(response);
+
+			if( response.success ){
+				console.log(response);
+				
+				document.subform.reset();
+				$('#reguser tr[data-id=' + id + '] td:first-child').text(response.name);
+				showMessage('alert-success', 'Updated <b>Successfull</b>');
+			}
+
+	},'JSON');
+
+});
 
   //SLIMSCROLL FOR CHAT WIDGET
   $('#chat-box').slimScroll({

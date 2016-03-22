@@ -11,6 +11,7 @@
 
 			$job = array(
 				'regnum' => $_POST['regnum'],
+				'jname' => $_POST['jname'],
 				'source' => $_POST['source'],
 				'sourcelat' => $_POST['sourcelat'],
 				'sourcelng' => $_POST['sourcelang'],

@@ -34,9 +34,25 @@
                 		<!-- Main content -->
 				        <section class="content">
 
+				        <?php
+				            try {
+				                  $connection = new MongoClient();
+				                  $database = $connection->selectDB('apptect');
+				                  $collection = $database->selectCollection('registrations');
+
+				                  $cursor = $collection->find();
+				                  $cursor2 = $collection->find();
+
+				                  } catch(MongoConnectionException $e) {
+				                  die("Failed to connect to database ".$e->getMessage());
+				                  } catch(MongoException $e) {
+				                  die('Failed to insert data '.$e->getMessage());
+				                  }                    
+              ?>
+
 				        <!-- Main Page Content -->
 				        <div class="row">
-             			<div class="col-md-7">
+             			<div class="col-md-6">
              			<div class="box box-primary">
 		                  <div class="box-header">
 		                    <i class="fa fa-map-marker"></i>
@@ -51,6 +67,71 @@
               			</div>
                  		</div> 
               			</div>
+
+              			<!-- Left col 1 -->
+            			<div class="col-md-3">
+            			<div class="box box-success">
+			                <div class="box-header">
+			                  <i class="fa fa-users"></i>
+			                  <h3 class="box-title">Drivers</h3>
+			                 
+			                </div>
+			                <div class="box-body" id="vehiclebox">
+			                <div class="box-body no-padding">
+			                  <table class="table table-striped table-hover">
+			                    <thead>
+
+			                 	</thead>
+                    				<tbody id="vehicle">
+<?php                   
+
+                while ($cursor->hasNext()):
+                    $registration = $cursor->getNext(); 
+                   echo '<tr class="rowclk" data-id="'.$registration['_id'].'">';
+                   echo '<td>'.$registration['dname'].'</td>';
+                   echo '</tr>';
+
+                    endwhile; ?> 
+                    				</tbody></table>
+                			</div>
+
+                			</div><!-- /.chat -->
+                			</div>
+                			</div>
+
+
+                			<!-- Left col 2 -->
+	            			<div class="col-md-3">
+	            			<div class="box box-success">
+			                <div class="box-header">
+			                  <i class="fa fa-users"></i>
+			                  <h3 class="box-title">Jobs</h3>
+			                 
+			                </div>
+			                <div class="box-body" id="jobbox">
+			                <div class="box-body no-padding">
+			                  <table class="table table-striped table-hover">
+			                    <thead>
+
+			                 	</thead>
+                    			<tbody id="job">
+				<?php                   
+
+                while ($cursor2->hasNext()):
+                    $registration = $cursor2->getNext(); 
+                   echo '<tr class="rowclk" data-id="'.$registration['_id'].'">';
+                   echo '<td>'.$registration['dname'].'</td>';
+                   echo '</tr>';
+
+                    endwhile; ?> 
+                    				</tbody></table>
+                			</div>
+
+                			</div><!-- /.chat -->
+                			</div>
+                			</div>
+                
+
         
           				</div><!-- /.row (main row) -->
 
