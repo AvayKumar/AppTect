@@ -24,7 +24,7 @@
 
             if ( $collection->insert($registration) ) {
             	
-            	$cursor = $collection->find(array('regnum' => $_POST['regnum']), array('_id', 'dname'));
+            	$cursor = $collection->find(array('saved_at' => new MongoDate() ), array('_id', 'dname'));
     		
     		 	if( $cursor->hasNext()){
     		 		$data = $cursor->getNext();
@@ -48,6 +48,8 @@
 
 		
 	}
+					
+
 ?>
 
 	

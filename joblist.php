@@ -31,8 +31,9 @@
      <thead>
      	<tr>
      		<th>Vehicle Name</th>
-     		<th>Job Location</th>
-     		<th>Payment Type</th>
+               <th>Job Name</th>
+     		<th>Source</th>
+               <th>Destination</th>
                <th>Supervisor Name</th>
      		<th>Edit</th>
      		<th>Delete</th>
@@ -43,8 +44,9 @@
      $job = $cursor->getNext();
      echo '<tr>';
      echo '<td>'.$job['regnum'].'</td>';
-     echo '<td>'.$job['jloc'].'</td>';
-     echo '<td>'.$job['ptype'].'</td>';
+     echo '<td>'.$job['jname'].'</td>';
+     echo '<td>'.$job['source'].'</td>';
+     echo '<td>'.$job['dest'].'</td>';
      echo '<td>'.$job['supname'].'</td>';
      echo '<td><a href="http://localhost/apptect/edit.php?edit='.$job['_id'].'" onclick="test(this)" class="btn btn-warning">Edit</button></td>';
      echo '<td><a href="?delete='.$job['_id'].'" class="btn btn-danger">Delete</a></td>';
@@ -54,8 +56,9 @@
      <tfoot>
      	<tr>
      		<th>Vehicle Name</th>
-               <th>Job Location</th>
-               <th>Payment Type</th>
+               <th>Job Name</th>
+               <th>Source</th>
+               <th>Destination</th>
                <th>Supervisor Name</th>
                <th>Edit</th>
                <th>Delete</th>

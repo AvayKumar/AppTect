@@ -32,8 +32,8 @@
         
         <!-- Main content -->
         <section class="content">
-          <div id="message" class="alert" style="display:none">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <div id="message" style="display:none">
+            <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> -->
             <p></p>
           </div>
 
@@ -45,8 +45,8 @@
                   <i class="fa fa-registered"></i>
                   <h3 class="box-title">Quick Registration</h3>
                   <!-- tools box -->
-                  <div class="pull-right box-tools">
-                    <button class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="" style="margin-right: 5px;" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+                  <div class="pull-right box-tools" id="addnew" >
+                    
                   </div><!-- /. tools -->
                 </div>
                 <div class="box-body">
@@ -71,37 +71,21 @@
                     </div>
 
                     <div class="form-group">
-                      <select id="pdropdown" name="ptype" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-                        <option value="" >Select Payment Basis</option>
-                        <option id="option1" value="hr" data-place="Amount Per Hour"> Per Hour </option>
-                        <option id="option2" value="km" data-place="Amount Per Kilometer"> Per Kilometer </option>
-                        </select> 
+                      <div class="input-group" id="radclk"  >
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" style="background:#FFFFFF"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Payment Basis <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                              <li><a id="option1" data-place="Amount Per Hour" href="javascript:void(0)"> Per Hour </a></li>
+                              <li><a id="option2" data-place="Amount Per Kilometer" href="javascript:void(0)"> Per Kilometer </a></li>
+                            </ul>
+                        </div><!-- /btn-group -->                        
+                        <input type="hidden" id="ptype" name="ptype" value=""/>
+
+                        <input type="number" class="form-control"  name="prate" class="form-control" required>
+                        <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                      </div> 
                     </div>
 
-                    <div class="input-group" id="radclk" >
-                        <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                      <input type="number" class="form-control"  name="prate" class="form-control">
-                      </div> 
-
-
-                    <!-- <div class="form-group">
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="ptype" id="optionsRadios1" data-place="Amount Per Hour" value="hr" required>
-                          Per Hour
-                        </label>
-                      </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="ptype" id="optionsRadios2" data-place="Amount Per Kilometer" value="km" required>
-                          Per Kilometer
-                        </label>
-                      </div>
-                      <div class="input-group" id="radclk" style="display:none">
-                        <span class="input-group-addon"><i class="fa fa-inr"></i></span>
-                      <input type="number" class="form-control"  name="prate" class="form-control">
-                      </div> 
-                    </div> -->
                    <input type="submit" name="submit" value="submit" id="submit" style="display:none" />
                    <input type="button" name="update" value="update" id="update" style="display:none" />
                   </form>
@@ -120,12 +104,12 @@
                   $database = $connection->selectDB('apptect');
                   $collection = $database->selectCollection('registrations');
 
-                  $cursor = $collection->find();
+                  $cursor = $collection->find()->sort(array('saved_at'=>-1));
 
                   } catch(MongoConnectionException $e) {
-                  die("Failed to connect to database ".$e->getMessage());
+                    die("Failed to connect to database ".$e->getMessage());
                   } catch(MongoException $e) {
-                  die('Failed to insert data '.$e->getMessage());
+                    die('Failed to insert data '.$e->getMessage());
                   }                    
               ?>
  
@@ -138,25 +122,20 @@
                 </div>
                 <div class="box-body" id="chat-box">
                   <div class="box-body no-padding">
-                  <table class="table table-striped table-hover">
-                    <thead>
-                      <tr>
-                        <th>Driver Name</th>
-                      </tr>
-                    </thead>
-                    <tbody id="reguser">
+                                  
 
-                <?php                   
+                    <div class="list-group" id="reguser">
+                      <?php                   
 
-                    while ($cursor->hasNext()):
-                        $registration = $cursor->getNext(); 
-                       echo '<tr class="rowclk" data-id="'.$registration['_id'].'">';
-                       echo '<td>'.$registration['dname'].'</td>';
-                       echo '</tr>';
+                                    while ($cursor->hasNext()) : 
+                                        $registration = $cursor->getNext();
+                                        echo '<button type="button" class="close delbutton" data-id="'.$registration['_id'].'">×</button>';
+                                       echo '<a href="javascript:void(0);" class="rowclk list-group-item" data-id="'.$registration['_id'].'">'.$registration['dname'].'</a>';
+                                       
+                 
+                                    endwhile; ?> 
 
-                    endwhile; ?>                              
-                  
-                  </tbody></table>
+                    </div>
                 </div>
 
                 </div><!-- /.chat -->

@@ -80,15 +80,22 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="jname" class="form-control" name="jname" placeholder="Job Name For Ex. Mumbai-Delhi etc." required>
+                      <input type="text" id="jname" class="form-control" name="jname" placeholder="Job Name " required>
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="sourceLoc" class="form-control" name="source" placeholder="Source Location" required>
+                      <div class="input-group">
+                        <input type="text" id="sourceLoc" class="form-control" name="source" placeholder="Source Location" required>
+                        <span id="sourceInd" class="input-group-addon"><span class="glyphicon glyphicon glyphicon-map-marker" aria-hidden="true"></span></span>
+                      </div>
                     </div>
 
                     <div class="form-group">
-                      <input type="text" id="destLoc" class="form-control" name="dest" placeholder="Destination Location" required>
+                      <div class="input-group">
+                        <input type="text" id="destLoc" class="form-control" name="dest" placeholder="Destination Location" required>
+                        <span id="destInd"  class="input-group-addon"><span class="glyphicon glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                      </div>
+                      
                     </div>
 
                     <div class="form-group">

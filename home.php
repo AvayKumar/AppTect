@@ -48,7 +48,7 @@
 				                  } catch(MongoException $e) {
 				                  die('Failed to insert data '.$e->getMessage());
 				                  }                    
-              ?>
+              			?>
 
 				        <!-- Main Page Content -->
 				        <div class="row">

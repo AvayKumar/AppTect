@@ -28,6 +28,7 @@
             <li><a href="home.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
             <li><a href="addedit.php"><i class="fa fa-book"></i> <span>Registration</span></a></li>
             <li><a href="job.php"><i class="fa fa-car"></i> <span>Jobs</span></a></li>
+            <li><a href="inbox.php"><i class="fa fa-envelope"></i> <span>Inbox</span></a></li>
             
           </ul>
         </section>

@@ -293,12 +293,18 @@ $(document).ready(function() {
     autocomplete_init( '#destLoc' );
   }; 
 
+  $('#sourceInd').addClass('loc-active');
+
   $('#sourceLoc').focusin(function(){
     isSource = true;
+    $('#sourceInd').addClass('loc-active');
+    $('#destInd').removeClass('loc-active');
   });
 
   $('#destLoc').focusin(function(){
     isSource = false;
+    $('#sourceInd').removeClass('loc-active');
+    $('#destInd').addClass('loc-active');
   });
 
 

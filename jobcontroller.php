@@ -8,13 +8,13 @@
 			$connection = new MongoClient();
 			$database = $connection->selectDB('apptect');
 			$collection = $database->selectCollection('jobs');
-
+			$jobstatus = 'pending';
 			$job = array(
 				'regnum' => $_POST['regnum'],
 				'jname' => $_POST['jname'],
 				'source' => $_POST['source'],
 				'sourcelat' => $_POST['sourcelat'],
-				'sourcelng' => $_POST['sourcelang'],
+				'sourcelng' => $_POST['sourcelng'],
 				'dest' => $_POST['dest'],
 				'destlat' => $_POST['destlat'],
 				'destlng' => $_POST['destlng'],
@@ -22,6 +22,7 @@
 				'time' => $_POST['time'],
 				'amount' => $_POST['amount'],
 				'supname' => $_POST['supname'],
+				'jobstatus' => $jobstatus,
 				'saved_at' => new MongoDate()
 			);
 
@@ -29,13 +30,14 @@
 
             if ( $collection->insert($job) ) {
             	
-            	$cursor = $collection->find(array('regnum' => $_POST['regnum']), array('_id', 'jloc'));
+            	$cursor = $collection->find(array('regnum' => $_POST['regnum']), array('_id', 'jname','jobstatus'));
     		
     		 	if( $cursor->hasNext()){
     		 		$data = $cursor->getNext();
     		 		$response['success'] = true;
     		 		$response['id'] = $data['_id'];
-    		 		$response['name'] = $data['jloc'];
+    		 		$response['name'] = $data['jname'];
+    		 		$response['jobstatus'] = $data['jobstatus'];
     		 	} else {
     		 		$response['success'] = false;
     		 	}
