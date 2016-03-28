@@ -1,5 +1,8 @@
 <?php
 	
+
+	require_once 'gcm/Gcm.php';
+
 	if( isset($_POST) ){
 	
 		$response = array();
@@ -32,7 +35,7 @@
             	
             	$cursor = $collection->find(array('regnum' => $_POST['regnum']), array('_id', 'jname','jobstatus'));
     		
-    		 	if( $cursor->hasNext()){
+    		 	/*if( $cursor->hasNext()){
     		 		$data = $cursor->getNext();
     		 		$response['success'] = true;
     		 		$response['id'] = $data['_id'];
@@ -40,7 +43,14 @@
     		 		$response['jobstatus'] = $data['jobstatus'];
     		 	} else {
     		 		$response['success'] = false;
-    		 	}
+    		 	}*/
+		 		$registrations = $database->selectCollection('registrations');
+    		 	$tokenreg = $database->selectCollection('tokenreg');
+    		 	$data = $registrations->findOne(array('regnum'=>$job['regnum']), array('imei'));
+    		 	$tokenData = $tokenreg->findOne(array('imei'=> $data['imei']));
+
+    		 	Gcm::sendNotifcation('Hello this is AppTech' ,$tokenData['imei']);
+
             } else {
             	$response['success'] = false;
             }
