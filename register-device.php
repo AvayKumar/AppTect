@@ -39,21 +39,21 @@
 				}
 
 			} catch(MongoConnectionException $e) {
-				echo "Failed to connect to database ".$e->getMessage().'<br/>';
+				//echo "Failed to connect to database ".$e->getMessage().'<br/>';
 				$response['success'] = false;
 			} catch(MongoException $e) {
-				echo 'Failed to insert data '.$e->getMessage().'<br/>';
+				//echo 'Failed to insert data '.$e->getMessage().'<br/>';
 				$response['success'] = false;
 			}
 
 			echo json_encode( $response );
 		}
 
-	$res = $collection->find();
+	/*$res = $collection->find();
 
 	while ($res->hasNext()){
        $reg = $res->getNext();
        echo '</br>'.$reg['_id'].' '.$reg['imei'].' '.$reg['token'].'<br/>';
-    }
+    }*/
 
 ?>		

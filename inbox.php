@@ -6,8 +6,8 @@
     <title>AdminLTE 2 | Dashboard</title>
 
     <?php require 'components/styles.php' ?>
-        <link rel="stylesheet" href="css/customstyle.css" >
-        <link rel="stylesheet" type="text/css" media="screen" title="User Defined Style" href="css/jquery-ui-1.8.16.custom.css" >
+    <link rel="stylesheet" href="css/customstyle.css" >
+    <link rel="stylesheet" type="text/css" media="screen" title="User Defined Style" href="css/jquery-ui-1.8.16.custom.css" >
 
   </head>
 			    <body class="hold-transition skin-blue sidebar-mini">

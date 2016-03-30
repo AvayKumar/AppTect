@@ -14,7 +14,6 @@ $(function(){
 				/*var name = $('#vehiclebox a.active').text();*/
 				var message = $('#tmessage').val();
 				
-				
 				/*$('#chat-box').animate({scrollTop:$(document).height()}, 'slow');*/
 				var id = $('#vehiclebox a.active').attr('data-id');
 				var data = $(this).serializeArray();
@@ -22,11 +21,9 @@ $(function(){
 				data.push({ 'name': 'message', 'value': message});
 				data.push({ 'name': 'msname', 'value' : 'Admin'});
 
-				$.post('controllers/messageController.php', data ,function(response){
+				$.post('controllers/messagecontroller.php', data ,function(response){
 
-					if( response.success ){
-						console.log(response);
-						console.log(response.id['$id']);
+					if( response.success ) {
 
 						$('#chat-box').append('<div class="item"><img src="img/admin.png" alt="user image" class="online"><p class="message"><a href="#" class="name"><small class="text-muted pull-right"><i class="fa fa-clock-o"></i>'+ response.time +'</small>Admin</a>' + message + '</p></div>');
 					}
@@ -41,33 +38,31 @@ $(function(){
 				
 				
 
-				$('#vehiclebox a').click(function(){
+				$('#vehiclebox a').click(function() {
 
 					$(this).siblings().removeClass('active');
 					$(this).addClass('active');
 					$('#chat-box').html('');
 
 					var id = $(this).attr('data-id');
-			
-					var data = [];
-					data.push({ 'name': 'id', 'value': id})
 
-					$.post('controllers/messageload.php', data ,function(response){
+					$.get('controllers/messageload.php?id=' + id, function(response){
 
-						if( response.success ){
+						if( response.success ) {
 							console.log(response);
 							var count = Object.keys(response).length;
   							console.log(count);
-
 
 						}
 						for (var i=0; i < count-1 ; i++) {
 							if (response[i].msname == 'Admin'){
 								var img = 'admin';
+								_class = 'online';
 							}else {
 							    img = 'user';
-							    } 
-						$('#chat-box').append('<div class="item"><img src="img/'+ img +'.png" alt="user image" class="online"><p class="message"><a href="#" class="name"><small class="text-muted pull-right"><i class="fa fa-clock-o"></i>'+ response[i].time +'</small>'+ response[i].msname +'</a>' + response[i].message + '</p></div>');
+							    _class = 'offline';
+							} 
+						$('#chat-box').append('<div class="item"><img src="img/'+ img +'.png" alt="user image" class="' + _class +'"><p class="message"><a href="#" class="name"><small class="text-muted pull-right"><i class="fa fa-clock-o"></i>'+ response[i].time +'</small>'+ response[i].msname +'</a>' + response[i].message + '</p></div>');
 						}
 						var height = $('#chat-box')[0].scrollHeight;
 						$('#chat-box').slimScroll({ scrollTo: height});

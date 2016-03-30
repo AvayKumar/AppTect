@@ -1,15 +1,15 @@
 <?php 
 		
-		if( !empty($_POST) ) {
+		if( isset($_GET['id']) /*, $_GET['skip'], $_GET['limit']*/ ) {
 
 			$response = array();
 			$response['success'] = true;
 			try {
 				$connection = new MongoClient();
 				$database = $connection->selectDB('apptect');
-				$collection = $database->selectCollection($_POST['id']);
+				$collection = $database->selectCollection($_GET['id']);
 
-				$cursor = $collection->find()->sort(array('saved_at'=>1));
+				$cursor = $collection->find()->sort(array('saved_at'=>-1))->skip($_GET['skip'])->limit($_GET['limit']);
 
 				$i = 0;
 				while ($cursor->hasNext()):
