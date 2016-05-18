@@ -1,3 +1,48 @@
+	var skip = 0;
+	var limit = 10;
+	var firstLoad = true;
+
+
+	function load(obj){
+
+		var id = $('#vehiclebox a.active').attr('data-id');
+
+		$.get('controllers/messageload.php?id=' + id + '&skip=' + skip + '&limit=' + limit, function(response){
+
+			if( response.success ) {
+				console.log(response);
+				var count = Object.keys(response).length;
+				console.log(count);
+
+				for (var i=0; i < count-1 ; i++) {
+					if (response[i].msname == 'Admin'){
+						var img = 'admin';
+						_class = 'online';
+					}else {
+					    img = 'user';
+					    _class = 'offline';
+					} 
+					$('#load').after('<div class="item"><img src="img/'+ img +'.png" alt="user image" class="' + _class +'"><p class="message"><a href="#" class="name"><small class="text-muted pull-right"><i class="fa fa-clock-o"></i>'+ response[i].time +'</small>'+ response[i].msname +'</a>' + response[i].message + '</p></div>');
+				}
+
+				skip = skip + limit;
+
+				if( count == 1 ) {
+					$(obj).remove();
+				}
+
+				if( firstLoad){
+					var height = $('#chat-box')[0].scrollHeight;
+					$('#chat-box').slimScroll({ scrollTo: height});
+					firstLoad = false;
+				}
+				
+			}
+
+		},'JSON');
+	}
+
+
 $(function(){
 
 			//SLIMSCROLL FOR CHAT WIDGET
@@ -10,7 +55,7 @@ $(function(){
 
 	  		//Scroll setting and send message
 
-			$('#send').click(function(){
+			$('#send').click(function() {
 				/*var name = $('#vehiclebox a.active').text();*/
 				var message = $('#tmessage').val();
 				
@@ -24,7 +69,6 @@ $(function(){
 				$.post('controllers/messagecontroller.php', data ,function(response){
 
 					if( response.success ) {
-
 						$('#chat-box').append('<div class="item"><img src="img/admin.png" alt="user image" class="online"><p class="message"><a href="#" class="name"><small class="text-muted pull-right"><i class="fa fa-clock-o"></i>'+ response.time +'</small>Admin</a>' + message + '</p></div>');
 					}
 					var height = $('#chat-box')[0].scrollHeight;
@@ -32,48 +76,22 @@ $(function(){
 
     			},'JSON');
 
-				
 			});
-
-				
 				
 
-				$('#vehiclebox a').click(function() {
+			$('#vehiclebox a').click(function() {
 
-					$(this).siblings().removeClass('active');
-					$(this).addClass('active');
-					$('#chat-box').html('');
+				$(this).siblings().removeClass('active');
+				$(this).addClass('active');
+				$('#chat-box').html('<button id="load" type="button" class="btn btn-block btn-default" onclick="load(this)" style="margin-bottom: 15px">Load More</button>');
+				skip = 0;
+				limit = 10;
+				firstLoad = true;
+				load();
 
-					var id = $(this).attr('data-id');
-
-					$.get('controllers/messageload.php?id=' + id, function(response){
-
-						if( response.success ) {
-							console.log(response);
-							var count = Object.keys(response).length;
-  							console.log(count);
-
-						}
-						for (var i=0; i < count-1 ; i++) {
-							if (response[i].msname == 'Admin'){
-								var img = 'admin';
-								_class = 'online';
-							}else {
-							    img = 'user';
-							    _class = 'offline';
-							} 
-						$('#chat-box').append('<div class="item"><img src="img/'+ img +'.png" alt="user image" class="' + _class +'"><p class="message"><a href="#" class="name"><small class="text-muted pull-right"><i class="fa fa-clock-o"></i>'+ response[i].time +'</small>'+ response[i].msname +'</a>' + response[i].message + '</p></div>');
-						}
-						var height = $('#chat-box')[0].scrollHeight;
-						$('#chat-box').slimScroll({ scrollTo: height});
-					
-
-					},'JSON');
-
-				});
+			});
 				
-				// Selcting clicked element
-				$('#vehiclebox a:first-child').addClass('active').click();
-
+			// Selcting clicked element
+			$('#vehiclebox a:first-child').click();
 				
 });  

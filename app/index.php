@@ -17,58 +17,14 @@
 		body{
 			background:#ebeef0;
 		}
-		.panel {
-			box-shadow: 0 2px 0 rgba(0,0,0,0.075);
-			border-radius: 0;
-			border: 0;
-			margin-bottom: 24px;
-		}
-		.panel .panel-heading, .panel>:first-child {
-			border-top-left-radius: 0;
-			border-top-right-radius: 0;
-		}
-		.panel-heading {
-			position: relative;
-			height: 50px;
-			padding: 0;
-			border-bottom:1px solid #eee;
-		}
-		.panel-control {
-			height: 100%;
-			position: relative;
-			float: right;
-			padding: 0 15px;
-		}
-		.panel-title {
-			font-weight: normal;
-			padding: 0 20px 0 20px;
-			font-size: 1.416em;
-			line-height: 50px;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
-		.panel-control>.btn:last-child, .panel-control>.btn-group:last-child>.btn:first-child {
-			border-bottom-right-radius: 0;
-		}
-		.panel-control .btn, .panel-control .dropdown-toggle.btn {
-			border: 0;
-		}
 		.nano {
-			position: fixed;
-			top: 0;
-			bottom:0;
 			width: 100%;
-			overflow: hidden;
 		}
 		.nano>.nano-content {
 			position: absolute;
 			overflow: scroll;
 			overflow-x: hidden;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
+			width: 100%;
 		}
 		.pad-all {
 			padding: 18px 15px 50px 15px;
@@ -86,7 +42,6 @@
 		}
 		.media-block .media-body {
 			display: block;
-			overflow: hidden;
 			width: auto;
 		}
 		.pad-hor {
@@ -163,7 +118,6 @@
 		}
 		.btn {
 			cursor: pointer;
-			/* background-color: transparent; */
 			color: inherit;
 			padding: 6px 12px;
 			border-radius: 0;
@@ -177,24 +131,13 @@
 		.form-control {
 			font-size: 11px;
 			height: 100%;
-			border-radius: 0;
+			border-radius: 14px;
 			box-shadow: none;
 			border: 1px solid #e9e9e9;
 			transition-duration: .5s;
 		}
-		.nano>.nano-pane {
-			background-color: rgba(0,0,0,0.1);
-			position: absolute;
-			width: 5px;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			opacity: 0;
-			-webkit-transition: all .7s;
-			transition: all .7s;
-		}
 		/* My custom styles */
-		.container-fluid, .col-xs-12 {
+		.container-fluid{
 			padding-right: 0px;
 			padding-left: 0px;
 		}
@@ -204,9 +147,9 @@
 			left: 0px;
 			right: 0px;
 			z-index:50;
-			box-shadow: 0px -6px 15px #888888;
+			box-shadow: 0px -1px 17px #888888;
 		}
-		.chat-input, .chat-btn{
+		.chat-btn{
 			border-radius: 14px;
 		}
 	</style>
@@ -214,68 +157,39 @@
 
   <body>
 
-<div class="container-fluid">
-    <div class="col-xs-12">
-        <div class="panel">
-    
-    		<!--Widget body-->
-    		<div id="demo-chat-body" class="collapse in">
-    			<div class="nano has-scrollbar">
-    				<div class="nano-content pad-all" tabindex="0">
-    					<ul id="chat-box" class="list-unstyled media-block">
-    						<!-- <li class="mar-btm">
-    							<div class="media-left">
-    								<img src="../img/admin.png" class="img-circle img-sm" alt="Profile Picture">
-    							</div>
-    							<div class="media-body pad-hor">
-    								<div class="speech">
-    									<a href="#" class="media-heading">John Doe</a>
-    									<p>Hello Lucy, how can I help you today ?</p>
-    									<p class="speech-time">
-    									<i class="fa fa-clock-o fa-fw"></i>09:23AM
-    									</p>
-    								</div>
-    							</div>
-    						</li>
-    						<li class="mar-btm">
-    							<div class="media-right">
-    								<img src="../img/user.png" class="img-circle img-sm" alt="Profile Picture">
-    							</div>
-    							<div class="media-body pad-hor speech-right">
-    								<div class="speech">
-    									<a href="#" class="media-heading">Lucy Doe</a>
-    									<p>Hi, I want to buy a new shoes.</p>
-    									<p class="speech-time">
-    										<i class="fa fa-clock-o fa-fw"></i> 09:23AM
-    									</p>
-    								</div>
-    							</div>
-    						</li> -->
-    					</ul>
-    				</div>
-    			<div class="nano-pane"><div class="nano-slider" style="height: 141px; transform: translate(0px, 0px);"></div></div></div>
-    
-    			<!--Widget footer-->
-    			<div class="panel-footer">
-    				<div class="row">
-    					<div class="col-xs-9">
-    						<input id="message" type="text" placeholder="Enter your text" class="form-control chat-input">
-    					</div>
-    					<div class="col-xs-3">
-    						<button id="send" class="btn chat-btn btn-primary btn-block" type="button">Send</button>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </div>
-</div>
+		<div class="container-fluid">
+		    
+			<!--Widget body-->
+			<div class="nano">
+				<div class="nano-content pad-all">
+					<ul id="chat-box" class="list-unstyled media-block">
+					</ul>
+				</div>
+
+				<!--Widget footer-->
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-xs-9">
+							<input id="message" type="text" placeholder="Enter your text" class="form-control chat-input">
+						</div>
+						<div class="col-xs-3">
+							<button id="send" class="btn chat-btn btn-primary btn-block" type="button">Send</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- container-fluid -->
 <script type="text/javascript" src="../plugins/jQuery/jQuery-2.1.4.min.js"></script>
 <script type="text/javascript">
 
 	var skip = 0;
 	var limit = 5;
-	var id = '56f974a01cfe7979208b4567';
+	var firstLoad = true;
+	var id = '';
+
+	function setId(cId){
+		id = cId;
+	}
 
 	function reload() {
 
@@ -286,14 +200,18 @@
 
 				for (var i=0; response[i] != undefined; i++) {
 					if ( response[i].msname == 'Admin' ){
-						$('#chat-box').prepend('<li class="mar-btm"><div class="media-left"><img src="../img/admin.png" class="img-circle img-sm" alt="Profile Picture"></div><div class="media-body pad-hor"><div class="speech"><a href="#" class="media-heading">Admin</a><p>' + response[i].message + '</p><p class="speech-time"><i class="fa fa-clock-o fa-fw"></i> ' + response[i].time + '</p></div></div></li>');
-					}else {
-						$('#chat-box').prepend('<li class="mar-btm"><div class="media-right"><img src="../img/user.png" class="img-circle img-sm" alt="User Profile Picture"></div><div class="media-body pad-hor speech-right"><div class="speech"><a href="#" class="media-heading">Me</a><p>' + response[i].message + '</p><p class="speech-time"><i class="fa fa-clock-o fa-fw"></i> ' + response[i].time + '</p></div></div></li>');
+						$('#chat-box').prepend('<li class="mar-btm"><div class="media-left"><img src="../img/admin.png" class="img-circle img-sm" alt="Profile Picture"></div><div class="media-body pad-hor"><div class="speech"><a href="javascript:void(0)" class="media-heading">Admin</a><p>' + response[i].message + '</p><p class="speech-time"><i class="fa fa-clock-o fa-fw"></i> ' + response[i].time + '</p></div></div></li>');
+					} else {
+						$('#chat-box').prepend('<li class="mar-btm"><div class="media-right"><img src="../img/user.png" class="img-circle img-sm" alt="User Profile Picture"></div><div class="media-body pad-hor speech-right"><div class="speech"><a href="javascript:void(0)" class="media-heading">Me</a><p>' + response[i].message + '</p><p class="speech-time"><i class="fa fa-clock-o fa-fw"></i> ' + response[i].time + '</p></div></div></li>');
 					} 
 				}
 				skip = skip + limit;
-				Android.dismissLoader();
+				if( firstLoad ){
+					$("html, body").animate({ scrollTop: $(document).height() }, 1000);
+					firstLoad = false;
+				}
 			}
+			Android.dismissLoader();
 		},'JSON');
 			
 	}
@@ -312,15 +230,15 @@
 				$.post('../controllers/messagecontroller.php', data ,function(response){
 
 					if( response.success ) {
-						console.log(response);
 						$('#chat-box').append('<li class="mar-btm"><div class="media-right"><img src="../img/user.png" class="img-circle img-sm" alt="User Profile Picture"></div><div class="media-body pad-hor speech-right"><div class="speech"><a href="#" class="media-heading">Me</a><p>' + message + '</p><p class="speech-time"><i class="fa fa-clock-o fa-fw"></i> ' + response.time + '</p></div></div></li>');
+						$('#message').val('');
+						$("html, body").animate({ scrollTop: $(document).height() }, 1000);
 					}
 
     			},'JSON');
 
 			}
 		});
-
 	});
 </script>
 

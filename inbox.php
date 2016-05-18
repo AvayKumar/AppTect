@@ -58,9 +58,9 @@
 						                  $cursor2 = $collection->find();
 
 						                  } catch(MongoConnectionException $e) {
-						                  die("Failed to connect to database ".$e->getMessage());
+						                  	die("Failed to connect to database ".$e->getMessage());
 						                  } catch(MongoException $e) {
-						                  die('Failed to insert data '.$e->getMessage());
+						                  	die('Failed to insert data '.$e->getMessage());
 						                  }                    
 		              			
 					                while ($cursor->hasNext()):
@@ -82,9 +82,7 @@
 				                  <i class="fa fa-comments-o"></i>
 				                  <h3 class="box-title">Chat</h3>
 				                </div>
-                <div class="box-body chat" id="chat-box" style="overflow: hidden; width: auto; height: 250px;">
-                  
-			                  
+                <div class="box-body chat" id="chat-box" style="overflow: hidden; width: auto; height: 250px;">  
                   				
                 </div><!-- /.chat -->
                 <div class="box-footer">

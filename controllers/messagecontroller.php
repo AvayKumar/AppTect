@@ -27,11 +27,9 @@
 				'time' => $fdt
 			);
 
-
-
             $collection->insert($message);
             	
-        	$data = $collection->findOne(array('saved_at' => new MongoDate() ), array('_id', 'message' , 'msname' , 'time'));
+        	$data = $collection->findOne(array('time' => $fdt ), array('_id', 'message' , 'msname' , 'time'));
 		
 	 		$response['success'] = true;
 	 		$response['id'] = $data['_id'];
@@ -41,10 +39,10 @@
 
 		} catch(MongoConnectionException $e) {
 			$response['success'] = false;
-			die("Failed to connect to database ".$e->getMessage());
+			//die("Failed to connect to database ".$e->getMessage());
 		} catch(MongoException $e) {
 			$response['success'] = false;
-			die('Failed to insert data '.$e->getMessage());
+			//die('Failed to insert data '.$e->getMessage());
 		}
 		
 		echo json_encode( $response );

@@ -21,10 +21,10 @@
 
 			} catch(MongoConnectionException $e) {
 				$response['success'] = false;
-				die("Failed to connect to database ".$e->getMessage());
+				//die("Failed to connect to database ".$e->getMessage());
 			} catch(MongoException $e) {
 				$response['success'] = false;
-				die('Failed to insert data '.$e->getMessage());
+				//die('Failed to insert data '.$e->getMessage());
 			}
 			
 			echo json_encode( $response );
